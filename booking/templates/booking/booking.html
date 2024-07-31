@@ -1,0 +1,30 @@
+{% extends "booking/site_page.html" %}
+{% block title %}
+    <title>Mama jo's - Make a Booking</title>
+{% endblock %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/contacts">Contact Us</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <form method="POST" action="/booking/" class="mx-auto p-2 bg-lion" style="width: fit-content;">
+        <p>Please enter all Dates in the following format:</p>
+        <p>YYYY-MM-DD</p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if is_new is False %}
+        <div class="alert alert-danger">
+            <p>Unfortunately that Table is not available at that time, please try another.</p>
+        </div>
+        {% endif %}
+        <div>
+            <p>
+                <button type="submit" class="btn btn-light">Make Booking</button>
+            </p>
+        </div>
+    </form>
+{% endblock %}
